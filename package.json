@@ -1,0 +1,23 @@
+{
+  "name": "object-composition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "factoryCookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arctic-fox-2016/object-composition.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arctic-fox-2016/object-composition/issues"
+  },
+  "homepage": "https://github.com/arctic-fox-2016/object-composition#readme",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0"
+  }
+}
