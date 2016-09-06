@@ -31,32 +31,33 @@ class GenericCookie extends Cookie {
   }
 }
 
-class CookieFactory {
-  static create(options) {
-    // Accepts a list of cookie types
-    this.options = options
+class Jar {
+  constructor() {
     this.cookies = []
+  }
+}
 
+class CookieFactory {
+  static create(options, container) {
     // Creates and returns those cookies
-    for (let i = 0; i < this.options.length; i++) {
-      switch (this.options[i]) {
+    for (let i = 0; i < options.length; i++) {
+      switch (options[i]) {
         case "peanut butter":
-        this.cookies.push(new PeanutButter)
+        container.cookies.push(new PeanutButter)
         break
         case "chocolate chip":
-        this.cookies.push(new ChocolateChip)
+        container.cookies.push(new ChocolateChip)
         break
         default:
-        this.cookies.push(new GenericCookie)
+        container.cookies.push(new GenericCookie)
       }
     }
-
-    return this.cookies
+    return true
   }
 
-  // Define other methods as needed
-  get inspect() {
-    return this.status
+  static list(container) {
+    // Creates and returns those cookies
+    return container.cookies
   }
 }
 
@@ -66,15 +67,22 @@ let options = fs.readFileSync("cakes.txt", "utf8").toString().split("\n")
 // Remove last blank row in file
 options.pop()
 
+// Create Jar container
+let jar = new Jar()
+
 // Get batch of cookies
-let batch_of_cookies = CookieFactory.create(options)
+CookieFactory.create(options, jar)
 
-console.log("Cookies belum dimasak:\n" + batch_of_cookies + "\n==========")
+console.log("Cookies belum dimasak:")
+console.log(jar.cookies)
+console.log("======================")
 
-for (let i = 0; i < batch_of_cookies.length; i++) {
-  batch_of_cookies[i].bake()
+for (let i = 0; i < jar.cookies.length; i++) {
+  jar.cookies[i].bake()
 }
 
-console.log("Cookies sudah dimasak:\n" + batch_of_cookies + "\n==========")
+console.log("Cookies sudah dimasak:")
+console.log(jar.cookies)
+console.log("======================")
 
 // Inheritance lebih cocok ketika membuat class yang harus menginherit method dan constructor dari parent class, dan Composition lebih cocok untuk membuat object baru melewati class yang hanya bisa dipanggil oleh Parent Class.
